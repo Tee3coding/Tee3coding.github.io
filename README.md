@@ -44,25 +44,42 @@ Open http://localhost:3000.
 ```
 src/
   app/
-    layout.tsx        Root layout, fonts, metadata
-    page.tsx          Home page (assembles sections)
-    globals.css       Tailwind import and theme variables
+    layout.tsx             Root layout: Navbar + Footer
+    template.tsx           Page-transition animation on every navigation
+    page.tsx               Home  (/)
+    about/page.tsx         About (/about): bio, skills, experience
+    projects/page.tsx      Projects (/projects): card grid
+    projects/[slug]/       Project detail (/projects/project-one, ...)
+    contact/page.tsx       Contact (/contact): form + links
+    not-found.tsx          404 page
+    globals.css            Tailwind import and theme variables
   components/
-    Navbar.tsx        Fixed top navigation
-    Hero.tsx          Animated intro
-    About.tsx         Bio and skills
-    Projects.tsx      Project cards
-    Contact.tsx       Contact call to action
-    Reveal.tsx        Scroll-reveal wrapper
+    Navbar.tsx             Top nav with animated active-link underline
+    Footer.tsx
+    Hero.tsx               Animated intro
+    PageHeader.tsx         Shared page title block
+    ProjectCard.tsx        Hover-lift project card
+    ContactForm.tsx        Opens the visitor's email app (mailto)
+    Reveal.tsx             Scroll-reveal wrapper
   data/
-    portfolio.ts      Your name, bio, skills and projects
+    portfolio.ts           Your name, bio, nav links, skills, experience, projects
 ```
+
+## Pages
+
+| Route | Purpose |
+| --- | --- |
+| `/` | Hero and featured projects |
+| `/about` | Bio, skills, experience timeline |
+| `/projects` | All projects |
+| `/projects/[slug]` | One page per project, generated from `portfolio.ts` |
+| `/contact` | Contact form and social links |
 
 ## Customising
 
-1. Edit `src/data/portfolio.ts` with your name, bio, links, skills and projects.
+1. Edit `src/data/portfolio.ts` with your name, bio, links, skills, experience and projects. Adding a project there automatically creates its page.
 2. Change the accent colour by replacing the `indigo-*` Tailwind classes.
-3. Add a new section: create a component in `src/components/`, wrap content in `<Reveal>`, and add it to `src/app/page.tsx`.
+3. Add a new page: create `src/app/<name>/page.tsx` and add it to `navLinks` in `portfolio.ts`.
 
 ## Deployment (GitHub Pages)
 
