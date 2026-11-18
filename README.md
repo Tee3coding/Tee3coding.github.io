@@ -46,40 +46,39 @@ src/
   app/
     layout.tsx             Root layout: Navbar + Footer
     template.tsx           Page-transition animation on every navigation
-    page.tsx               Home  (/)
-    about/page.tsx         About (/about): bio, skills, experience
-    projects/page.tsx      Projects (/projects): card grid
-    projects/[slug]/       Project detail (/projects/project-one, ...)
-    contact/page.tsx       Contact (/contact): form + links
+    page.tsx               The single page: assembles all sections
     not-found.tsx          404 page
     globals.css            Tailwind import and theme variables
   components/
-    Navbar.tsx             Top nav with animated active-link underline
-    Footer.tsx
+    Navbar.tsx             Fixed nav with scroll-spy underline
+    Footer.tsx             Icon links (this is the "Contact" anchor)
     Hero.tsx               Animated intro
-    PageHeader.tsx         Shared page title block
-    ProjectCard.tsx        Hover-lift project card
-    ContactForm.tsx        Opens the visitor's email app (mailto)
+    Section.tsx            Shared section wrapper (anchor id + heading)
+    Timeline.tsx           Experience / education timeline
     Reveal.tsx             Scroll-reveal wrapper
+    sections/              Skills, Work, Projects, Education
   data/
-    portfolio.ts           Your name, bio, nav links, skills, experience, projects
+    portfolio.ts           Your name, bio, nav links, skills, experience, education, projects
 ```
 
-## Pages
+## Page layout
 
-| Route | Purpose |
+Everything is on `/`, top to bottom:
+
+| Section | Anchor |
 | --- | --- |
-| `/` | Hero and featured projects |
-| `/about` | Bio, skills, experience timeline |
-| `/projects` | All projects |
-| `/projects/[slug]` | One page per project, generated from `portfolio.ts` |
-| `/contact` | Contact form and social links |
+| Intro (hero) | `#home` |
+| Skills | `#skills` |
+| Work | `#work` |
+| Projects | `#projects` |
+| Education | `#education` |
+| Contact (footer icons) | `#contact` |
 
 ## Customising
 
-1. Edit `src/data/portfolio.ts` with your name, bio, links, skills, experience and projects. Adding a project there automatically creates its page.
+1. Edit `src/data/portfolio.ts` with your name, bio, links, skills, experience, education and projects. The Bio and tagline are hidden while empty.
 2. Change the accent colour by replacing the `indigo-*` Tailwind classes.
-3. Add a new page: create `src/app/<name>/page.tsx` and add it to `navLinks` in `portfolio.ts`.
+3. Add a section: create a component in `src/components/sections/` using `<Section id="..." title="...">`, add it to `src/app/page.tsx`, and add `{ href: "#id", label: "..." }` to `navLinks`.
 
 ## Deployment (GitHub Pages)
 

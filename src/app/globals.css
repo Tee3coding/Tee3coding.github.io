@@ -27,6 +27,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* keep section titles below the fixed navbar */
 }
 
 @media (prefers-reduced-motion: reduce) {

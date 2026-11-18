@@ -15,7 +15,7 @@ const item: Variants = {
 
 export default function Hero() {
   return (
-    <section className="flex min-h-screen items-center px-6">
+    <section id="home" className="flex min-h-screen items-center px-6">
       <motion.div
         variants={container}
         initial="hidden"
@@ -37,17 +37,27 @@ export default function Hero() {
         >
           {profile.role}.
         </motion.h2>
-        <motion.p variants={item} className="mt-6 max-w-xl text-lg opacity-70">
-          {profile.tagline}
-        </motion.p>
-        <motion.div variants={item} className="mt-10">
+        {profile.tagline && (
+          <motion.p variants={item} className="mt-6 max-w-xl text-lg opacity-70">
+            {profile.tagline}
+          </motion.p>
+        )}
+        <motion.div variants={item} className="mt-10 flex flex-wrap gap-4">
           <motion.a
-            href="#projects"
+            href="#skills"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             className="inline-block rounded-md bg-indigo-500 px-6 py-3 font-medium text-white"
           >
-            View my work
+            Read more
+          </motion.a>
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-block rounded-md border border-white/20 px-6 py-3 font-medium"
+          >
+            Contact me
           </motion.a>
         </motion.div>
       </motion.div>

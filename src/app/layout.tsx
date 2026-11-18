@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tee3coding | Portfolio",
+  title: "Tee Jun Hong | Portfolio",
   description: "Portfolio built with Next.js, TypeScript and Framer Motion.",
 };
 
