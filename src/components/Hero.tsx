@@ -29,13 +29,13 @@ export default function Hero() {
           variants={item}
           className="text-5xl font-bold tracking-tight sm:text-7xl"
         >
-          {profile.name}.
+          {profile.name}
         </motion.h1>
         <motion.h2
           variants={item}
           className="mt-2 text-3xl font-semibold opacity-60 sm:text-5xl"
         >
-          {profile.role}.
+          {profile.role}
         </motion.h2>
         {profile.tagline && (
           <motion.p variants={item} className="mt-6 max-w-xl text-lg opacity-70">
