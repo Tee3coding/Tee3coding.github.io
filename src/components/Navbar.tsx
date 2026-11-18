@@ -49,28 +49,32 @@ export default function Navbar() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-background/70 backdrop-blur"
+      className="fixed inset-x-0 top-0 z-50 border-b border-foreground bg-background"
     >
-      <nav className="mx-auto flex max-w-5xl items-center justify-end px-4 py-4 sm:px-6">
-        <ul className="flex gap-3 text-xs sm:gap-6 sm:text-sm">
+      {/* Retro menu bar: the current section's item is shown inverted */}
+      <nav className="mx-auto flex max-w-5xl items-center justify-end px-2 py-2 sm:px-6">
+        <ul className="flex text-xs sm:text-sm">
           {navLinks.map((l) => {
             const isActive = active === l.href.slice(1);
             return (
               <li key={l.href} className="relative">
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-active"
+                    className="absolute inset-0 bg-foreground"
+                    transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                  />
+                )}
                 <a
                   href={`/${l.href}`}
-                  className={`transition hover:opacity-100 ${
-                    isActive ? "opacity-100" : "opacity-60"
+                  className={`relative block px-2 py-1 sm:px-3 ${
+                    isActive
+                      ? "text-background"
+                      : "text-foreground hover:underline hover:underline-offset-4"
                   }`}
                 >
                   {l.label}
                 </a>
-                {isActive && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute -bottom-1 left-0 h-0.5 w-full bg-indigo-400"
-                  />
-                )}
               </li>
             );
           })}

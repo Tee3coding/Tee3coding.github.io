@@ -1,37 +1,54 @@
 @import "tailwindcss";
 
+/* Retro desktop theme: black and white only. Change these to restyle the site. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #e8e8e8;
+  --muted: #8a8a8a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --font-sans: var(--font-plex-mono);
+  --font-mono: var(--font-plex-mono);
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  /* dotted "desktop wallpaper"; windows sit on top with a solid background */
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  font-family: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4rem; /* keep section titles below the fixed navbar */
+  scroll-padding-top: 4rem; /* keep section titles below the fixed menu bar */
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor-blink {
+  animation: blink 1s steps(1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .cursor-blink {
+    animation: none;
   }
 }

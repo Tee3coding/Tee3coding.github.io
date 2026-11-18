@@ -3,15 +3,22 @@ import type { Experience } from "@/data/portfolio";
 
 export default function Timeline({ items }: { items: Experience[] }) {
   return (
-    <ol className="space-y-8 border-l border-white/15 pl-6">
+    <ol className="space-y-7">
       {items.map((e, i) => (
         <li key={e.title + e.period}>
-          <Reveal delay={i * 0.1}>
-            <p className="font-mono text-xs text-indigo-400">{e.period}</p>
-            <h3 className="mt-1 text-lg font-semibold">{e.title}</h3>
-            <p className="text-sm opacity-60">{e.place}</p>
+          <Reveal delay={i * 0.08}>
+            <p className="text-xs text-muted">[{e.period}]</p>
+            <h3 className="mt-1 text-lg font-semibold">
+              <span aria-hidden className="text-muted">
+                &gt;{" "}
+              </span>
+              {e.title}
+            </h3>
+            <p className="text-sm text-muted">{e.place}</p>
             {e.description && (
-              <p className="mt-2 max-w-2xl text-sm opacity-70">{e.description}</p>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed opacity-85">
+                {e.description}
+              </p>
             )}
           </Reveal>
         </li>

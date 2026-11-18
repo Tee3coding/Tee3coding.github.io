@@ -4,7 +4,7 @@ import { experience } from "@/data/portfolio";
 
 export default function Work() {
   return (
-    <Section id="work" title="Work Experience">
+    <Section id="work" title="Work Experience" file="work.log">
       <Timeline items={experience} />
     </Section>
   );

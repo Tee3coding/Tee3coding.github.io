@@ -60,46 +60,49 @@ export default function Skills() {
   const visible = skills.filter((s) => tab === "All" || s.category === tab);
 
   return (
-    <Section id="skills" title="Skills">
+    <Section id="skills" title="Skills" file="skills.exe">
       {profile.about && (
         <Reveal>
-          <p className="mb-8 max-w-2xl opacity-80">{profile.about}</p>
+          <p className="mb-8 max-w-2xl text-sm leading-relaxed opacity-85">
+            {profile.about}
+          </p>
         </Reveal>
       )}
 
-      <Reveal>
-        <div role="tablist" aria-label="Filter skills" className="mb-8 flex flex-wrap gap-2">
-          {tabs.map((t) => {
-            const active = t === tab;
-            return (
-              <button
-                key={t}
-                role="tab"
-                aria-selected={active}
-                onClick={() => setTab(t)}
-                className={`relative rounded-full border px-4 py-1.5 text-sm transition-colors ${
-                  active
-                    ? "border-transparent text-white"
-                    : "border-white/20 opacity-70 hover:opacity-100"
-                }`}
-              >
-                {active && (
-                  <motion.span
-                    layoutId="skill-tab"
-                    className="absolute inset-0 rounded-full bg-indigo-500"
-                    transition={{ type: "spring", stiffness: 500, damping: 38 }}
-                  />
-                )}
-                <span className="relative">{t}</span>
-              </button>
-            );
-          })}
-        </div>
-      </Reveal>
+      {/* Folder-style tabs */}
+      <div
+        role="tablist"
+        aria-label="Filter skills"
+        className="mb-6 flex flex-wrap gap-1 border-b border-foreground"
+      >
+        {tabs.map((t) => {
+          const active = t === tab;
+          return (
+            <button
+              key={t}
+              role="tab"
+              aria-selected={active}
+              onClick={() => setTab(t)}
+              className={`relative -mb-px border border-b-0 border-foreground px-3 py-1.5 text-xs sm:text-sm ${
+                active ? "text-background" : "text-muted hover:text-foreground"
+              }`}
+            >
+              {active && (
+                <motion.span
+                  layoutId="skill-tab"
+                  className="absolute inset-0 bg-foreground"
+                  transition={{ type: "spring", stiffness: 500, damping: 40 }}
+                />
+              )}
+              <span className="relative">{t}</span>
+            </button>
+          );
+        })}
+      </div>
 
       <motion.ul
         layout
-        className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+        className="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
       >
         <AnimatePresence mode="popLayout">
           {visible.map((s) => {
@@ -111,15 +114,12 @@ export default function Skills() {
                 initial={{ opacity: 0, scale: 0.85 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.85 }}
-                whileHover={{ y: -4 }}
                 transition={{ type: "spring", stiffness: 350, damping: 28 }}
-                className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-5 text-center transition-colors hover:border-indigo-400"
+                className="flex flex-col items-center gap-2 border border-foreground/40 px-3 py-4 text-center transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
               >
-                <Icon className="h-8 w-8 text-indigo-400" aria-hidden />
+                <Icon className="h-7 w-7" aria-hidden />
                 <span className="text-sm">{s.name}</span>
-                {s.basic && (
-                  <span className="font-mono text-[11px] opacity-50">Basic</span>
-                )}
+                {s.basic && <span className="text-[11px] opacity-60">basic</span>}
               </motion.li>
             );
           })}

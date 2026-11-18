@@ -1,13 +1,19 @@
 import Link from "next/link";
+import Window from "@/components/Window";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
-      <p className="font-mono text-sm text-indigo-400">404</p>
-      <h1 className="mt-2 text-4xl font-bold">Page not found</h1>
-      <Link href="/" className="mt-6 text-indigo-400 hover:underline">
-        Back home
-      </Link>
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <Window title="error.exe" className="w-full max-w-md" bodyClassName="p-6 text-center">
+        <p className="text-sm text-muted">404</p>
+        <h1 className="mt-2 text-2xl font-semibold">Page not found</h1>
+        <Link
+          href="/"
+          className="mt-6 inline-block border border-foreground px-5 py-2 text-sm hover:bg-foreground hover:text-background"
+        >
+          Back home
+        </Link>
+      </Window>
     </div>
   );
 }

@@ -4,7 +4,7 @@ import { education } from "@/data/portfolio";
 
 export default function Education() {
   return (
-    <Section id="education" title="Education">
+    <Section id="education" title="Education" file="education.md">
       <Timeline items={education} />
     </Section>
   );
